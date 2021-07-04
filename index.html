@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>文武工作微信</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        div {
-            width: 375px;
-            height: 812px;
-            background-image: url(./bg.png);
-            background-size:375px 812px;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 375px;
+        height: 812px;
+        /* display: none; */
+        background-image: url(./bg.png);
+        background-size: 375px 812px;
+      }
+      .dnone {
+        display: none;
+      }
     </style>
-</head>
-<body>
-    <div>
+    <script src="./jquery.min.js"></script>
+    <script src="./node_modules/html2canvas/dist/html2canvas.js"></script>
+  </head>
+  <body>
+    <div id="capture">
+      <div class="box">
+        <div class="from">
+            请输入时间：<input type="time">
+            请输入电量：<input type="number"  min="1" max="100">
+            <button class="btn">确定</button>
+        </div>
+        <div class="number"></div>
+      </div>
     </div>
-</body>
+
+    <script>
+      $(".btn").click(function () {
+        html2canvas(document.querySelector("#capture")).then((canvas) => {
+          document.body.appendChild(canvas);
+          setTimeout(function () {
+            $(".box").addClass("dnone");
+          }, 1);
+        });
+      });
+    </script>
+  </body>
 </html>

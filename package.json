@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/shengdanlaoren-chen/shengdanlaoren-chen.github.io#readme",
   "dependencies": {
+    "canvas2image": "^1.0.5",
     "html2canvas": "^1.0.0-rc.7"
   }
 }

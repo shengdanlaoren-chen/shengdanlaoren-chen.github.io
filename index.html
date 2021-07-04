@@ -9,13 +9,64 @@
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+      .from {
+        width: 375px;
       }
       .box {
         width: 375px;
         height: 812px;
-        /* display: none; */
         background-image: url(./bg.png);
         background-size: 375px 812px;
+        position: relative;
+      }
+      input {
+          width: 50%;
+      }
+      .time {
+          font-weight: 600;
+          font-size: 14px;
+          font-family: 'STHeiti Light';
+          position: absolute;
+          left: 27px;
+          top: 13px;
+
+      }
+      .signal  {
+        position: absolute;
+          right: 82px;
+          top: 28px;
+          display: flex;
+      }
+      .signal span {
+          /* display: inline-block; */
+          height: 10px;
+          width: 3px;
+          background-color: #bbbbbc;
+         margin-left: 2px;
+         position: absolute;
+         bottom: 0;
+         border-radius: 2px;
+      }
+      .battery {
+          width: 17px;
+          height: 7px;
+          background-color: #000;
+          position: absolute;
+          right: 19px;
+          top: 20px;
+          border-radius: 1px;
+      }
+      .people {
+          position: absolute;
+          bottom: 100px;
+          left: 115px;
+          color: #868686;
+          font-family: 'STHeiti Light';
+      }
+      .btn {
+          margin-top: 10px;
       }
       .dnone {
         display: none;
@@ -25,24 +76,40 @@
     <script src="./node_modules/html2canvas/dist/html2canvas.js"></script>
   </head>
   <body>
+    <div class="from">
+        请输入时间：<input class="inp-time" type="time"><br>
+        请输入电量：<input class="inp-battery" type="number"  min="1" max="100"><br>
+        请输入微信好友人数：<input type="number" class="inp-people"  min="1"><br>
+        <button class="btn">确定</button>
+    </div>
     <div id="capture">
-      <div class="box">
-        <div class="from">
-            请输入时间：<input type="time">
-            请输入电量：<input type="number"  min="1" max="100">
-            <button class="btn">确定</button>
-        </div>
-        <div class="number"></div>
+      <div class="box">  
+          <span class="time">22:33</span>
+          <div class="signal">
+              <span class="sp1" style="height: 4px;left: 0;"></span>
+              <span class="sp2" style="height: 6px;left: 4px"></span>
+              <span class="sp3" style="height: 8px;left: 8px"></span>
+              <span class="sp4" style="height: 10px;left: 12px"></span>
+          </div>
+          <div class="battery"></div>
+          <div class="people">102个朋友及联系人</div>
       </div>
     </div>
 
     <script>
       $(".btn").click(function () {
-        html2canvas(document.querySelector("#capture")).then((canvas) => {
-          document.body.appendChild(canvas);
-          setTimeout(function () {
+          let str1 = $('.inp-time').val()
+          let str2 = $('.inp-battery').val()
+          let str3 = $('.inp-people').val()
+          $('.time').text(str1)
+        //   $('.battery').text(str1)
+          $('.people').text(`${str3}个朋友及联系人`)
+          console.log(str1,str2,str3);
+        setTimeout(function () {
             $(".box").addClass("dnone");
           }, 1);
+        html2canvas(document.querySelector("#capture")).then((canvas) => {
+          document.body.appendChild(canvas);
         });
       });
     </script>

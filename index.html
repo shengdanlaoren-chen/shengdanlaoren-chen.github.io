@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>文武傻逼</title>
   </head>
   <style>
     @font-face {
@@ -30,6 +30,12 @@
       font-family: myFirstFont;
       font-weight: 500;
     }
+    .file {
+      width: 222px;
+    }
+    .btn {
+      padding: 0 5px;
+    }
     .dnone {
       display: none;
     }
@@ -38,11 +44,9 @@
   <script src="./html2canvas.js"></script>
   <script src="./canvas2image.js"></script>
   <body>
-    <input type="file" onchange="selectImage(this);" />
+    <input type="file" class="file" onchange="selectImage(this);" /><button class="btn">生成图片</button>
     <br />
-    请输入好友人数:<input type="number" class="inp" />
-    <br />
-    <button class="btn">下载</button>
+    请输入好友人数:<input type="number" class="inp" placeholder="输入你想生成的好友个数"/>    
     <br />
     <div class="box">
       <img id="image" src="" />

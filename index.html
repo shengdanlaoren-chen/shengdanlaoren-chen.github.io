@@ -14,7 +14,6 @@
     .box {
       position: relative;
       width: 1125px;
-      height: 2436px;
     }
     .text {
       width: 1125px;
@@ -65,7 +64,7 @@
         }, 1);
         html2canvas(document.querySelector(".box")).then((canvas) => {
           document.body.appendChild(canvas);
-          Canvas2Image.saveAsPNG(canvas,765);
+          Canvas2Image.saveAsPNG(canvas,1125,2436);
         });
       });
     </script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文武傻逼</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: myFirstFont;
+      src: url(./苹方字体.ttf);
+    }
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .box {
+      position: relative;
+      width: 1125px;
+    }
+    .text {
+      width: 1125px;
+      text-align: center;
+      position: absolute;
+      font-size: 48px;
+      color: #808080;
+      bottom: 308px;
+      background-color: #fff;
+      font-family: myFirstFont;
+      font-weight: 500;
+    }
+    .file {
+      width: 222px;
+    }
+    .btn {
+      padding: 0 5px;
+    }
+    .dnone {
+      display: none;
+    }
+  </style>
+  <script src="./jquery.min.js"></script>
+  <script src="./html2canvas.js"></script>
+  <script src="./canvas2image.js"></script>
+  <body>
+    <input type="file" class="file" onchange="selectImage(this);" /><button class="btn">生成图片</button>
+    <br />
+    请输入好友人数:<input type="number" class="inp" placeholder="输入你想生成的好友个数"/>    
+    <br />
+    <div class="box">
+      <img id="image" src="" />
+      <div class="text">102个朋友及联系人</div>
+    </div>
+    <br />
+    <script>
+      var image = "";
+      function selectImage(file) {
+        if (!file.files || !file.files[0]) {
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          document.getElementById("image").src = evt.target.result;
+          image = evt.target.result;
+        };
+        reader.readAsDataURL(file.files[0]);
+      }
+      $(".btn").click(function () {
+        let text = $(".inp").val();
+        $(".text").text(`${text}个朋友及联系人`);
+        setTimeout(function () {
+          $(".box").addClass("dnone");
+        }, 1);
+        html2canvas(document.querySelector(".box")).then((canvas) => {
+          document.body.appendChild(canvas);
+          Canvas2Image.saveAsImage(canvas, 1125, 2436, "png");
+        });
+      });
+    </script>
+  </body>
+</html>
